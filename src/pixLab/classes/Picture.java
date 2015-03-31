@@ -330,6 +330,39 @@ public class Picture extends SimplePicture
 			}
 		}
 	}
+	public void checkerRandomize()
+	{
+	Pixel[][] pixels = this.getPixels2D();
+	int width = pixels[0].length;
+		for (int row = 0; row < pixels.length; row++)
+		{
+			for (int col = 0; col < width; col++)
+			{
+				if((row%2 == 0 && col%2 == 0) || (row%2 == 1 && col%2 == 1))
+				{
+					pixels[row][col].setBlue((int) (Math.random() * 254));
+					pixels[row][col].setGreen((int) (Math.random() * 254));
+					pixels[row][col].setRed((int) (Math.random() * 254));
+				}
+			}
+		}
+	}
+	public void randomize()
+	{
+	Pixel[][] pixels = this.getPixels2D();
+	int width = pixels[0].length;
+		for (int row = 0; row < pixels.length; row++)
+		{
+			for (int col = 0; col < width; col++)
+			{
+				
+				pixels[row][col].setBlue((int) (Math.random() * 254));
+				pixels[row][col].setGreen((int) (Math.random() * 254));
+				pixels[row][col].setRed((int) (Math.random() * 254));
+				
+			}
+		}
+	}
 	public void checkerRandom()
 	{
 	Pixel[][] pixels = this.getPixels2D();
@@ -913,6 +946,25 @@ public class Picture extends SimplePicture
 
 		}
 	}
+	public void chromaKey(Picture screen, Picture beach)
+	{
+		Pixel[][] pixels = this.getPixels2D();
+		int width = pixels[0].length;
+		for (int row = 0; row < (pixels.length-1); row++)
+		{
+			for (int col = 0; col < (pixels[0].length-1); col++)
+			{				
+				if((screen.getPixel(col, row).getRed()) < 30 && (screen.getPixel(col, row).getBlue()) > 20 && (screen.getPixel(col, row).getGreen()) > 10)
+				{
+					screen.getPixel(col, row).setRed(beach.getPixel(col, row).getRed());
+					screen.getPixel(col, row).setBlue(beach.getPixel(col, row).getBlue());
+					screen.getPixel(col, row).setGreen(beach.getPixel(col, row).getGreen());
+				}
+				
+			}
+
+		}
+	}
 	public void evenRed()
 	{
 		Pixel[][] pixels = this.getPixels2D();
@@ -938,6 +990,44 @@ public class Picture extends SimplePicture
 	 * @param edgeDist
 	 *            the distance for finding edges
 	 */
+	public void edgeDetection2(int edgeDist)
+	{
+		Pixel leftPixel = null;
+		Pixel rightPixel = null;
+		Pixel[][] pixels = this.getPixels2D();
+		Color rightColor = null;
+		boolean edge = false;
+		for (int row = 0; row < pixels.length -1; row++)
+		{
+			for (int col = 0; col < pixels[0].length -1; col++)
+			{
+				leftPixel = pixels[row][col];
+				rightPixel = pixels[row][col + 1];
+				rightColor = rightPixel.getColor();
+				if (leftPixel.colorDistance(rightColor) > edgeDist)
+				{
+					edge = true;
+				}
+				leftPixel = pixels[row][col];
+				rightPixel = pixels[row+1][col];
+				rightColor = rightPixel.getColor();
+				if(leftPixel.colorDistance(rightColor) > edgeDist)
+				{
+					
+					edge = true;
+				}
+				if(edge)
+				{
+					leftPixel.setColor(Color.BLACK);
+				}
+				else
+				{
+					leftPixel.setColor(Color.WHITE);
+				}
+				edge = false;
+			}
+		}
+	}
 	public void edgeDetection(int edgeDist)
 	{
 		Pixel leftPixel = null;
@@ -985,6 +1075,40 @@ public class Picture extends SimplePicture
 			}
 
 		}
+	}
+	public void checkering3(Picture message, Picture beach, Picture thirdPicture, int smallestRowSize, int smallestColSize)
+	{
+		Pixel[][] pixels = this.getPixels2D();
+		int width = pixels[0].length;
+		for (int row = 0; row < (smallestRowSize-2); row++)
+		{
+			for (int col = 0; col < (smallestColSize-2); col++)
+			{				
+				if(((row%3)+(col%3))%3 == 0)
+				{
+					message.getPixel(col, row).setRed(beach.getPixel(col, row).getRed());
+					message.getPixel(col, row).setBlue(beach.getPixel(col, row).getBlue());
+					message.getPixel(col, row).setGreen(beach.getPixel(col, row).getGreen());
+				}
+				else if(((row%3)+(col%3))%3 == 1)
+				{
+					message.getPixel(col, row).setRed(thirdPicture.getPixel(col, row).getRed());
+					message.getPixel(col, row).setBlue(thirdPicture.getPixel(col, row).getBlue());
+					message.getPixel(col, row).setGreen(thirdPicture.getPixel(col, row).getGreen());
+				}
+				
+			}
+
+		}
+	}
+	public void picture3CheckerBoard(Picture firstPicture, Picture secondPicture, Picture thirdPicture, int smallestRowSize, int smallestColSize)
+	{
+		Picture beach = new Picture(firstPicture);
+		Picture message = new Picture(secondPicture);
+		Picture otherPicture = new Picture(thirdPicture);
+		this.copy(beach, 0, 0);
+		beach.checkering3(beach, message, otherPicture, smallestRowSize, smallestColSize);
+		this.copy(beach, 0, 0);
 	}
 	/*
 	 * Main method for testing - each class in Java can have a main method

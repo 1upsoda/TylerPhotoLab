@@ -111,6 +111,20 @@ public class PictureTester
     bike.mirrorDiagnol();
     bike.explore();
   }
+  public static void testRandomize()
+  {
+    Picture bike = new Picture("beach.jpg");
+    bike.explore();
+    bike.randomize();
+    bike.explore();
+  }
+  public static void testCheckerRandomize()
+  {
+    Picture bike = new Picture("beach.jpg");
+    bike.explore();
+    bike.checkerRandomize();
+    bike.explore();
+  }
   public static void testMultiple()
   {
     Picture bike = new Picture("beach.jpg");
@@ -273,6 +287,12 @@ public class PictureTester
     swan.edgeDetection(10);
     swan.explore();
   }
+  public static void testEdgeDetection2()
+  {
+    Picture swan = new Picture("arch.jpg");
+    swan.edgeDetection2(100);
+    swan.explore();
+  }
   public static void testCopy()
   {
     Picture canvas = new Picture("swan.jpg");
@@ -336,11 +356,20 @@ public class PictureTester
     canvas.evenRed();
     canvas.explore();
   }
+ 
   public static void testDecodeAnything()
   {
     Picture canvas = new Picture("beach.jpg");
     canvas.explore();
     canvas.decode(canvas);
+    canvas.explore();
+  }
+  public static void testChromakey()
+  {
+    Picture canvas = new Picture("blue-mark.jpg");
+    Picture island = new Picture("moon-surface.jpg");
+    canvas.explore();
+    canvas.chromaKey(canvas, island);
     canvas.explore();
   }
   public static void testPicture2CheckerBoard()
@@ -397,6 +426,43 @@ public class PictureTester
     canvas.explore();
     
   }
+  public static void testPicture3CheckerBoard()
+  {
+    Picture canvas = new Picture("beach.jpg");
+    Picture island = new Picture("CumberlandIsland.jpg");
+    Picture third = new Picture("blueMotorcycle.jpg");
+    boolean length = (canvas.getWidth() > island.getWidth());
+    boolean length2 = (canvas.getWidth() > third.getWidth());
+    boolean length3 = (island.getWidth() > third.getWidth());
+    boolean height = (canvas.getHeight() > island.getHeight());
+    boolean height2 = (canvas.getHeight() > third.getHeight());
+    boolean height3 = (island.getHeight() > third.getHeight());
+    canvas.explore();
+//    if (length)
+//    {
+//    	if (height)
+//    	{
+//    		canvas.picture3CheckerBoard( canvas , island, third, island.getHeight(), island.getWidth());
+//    	}
+//    	else
+//    	{
+//    		canvas.picture3CheckerBoard( canvas , island, third, canvas.getHeight(), island.getWidth());
+//    	}
+//    }
+//    else
+//    {
+//    	if (height)
+//    	{
+//    		canvas.picture3CheckerBoard( canvas , island, third, island.getHeight(), canvas.getWidth());
+//    	}
+//    	else
+//    	{
+//    		canvas.picture3CheckerBoard( canvas , island, third, canvas.getHeight(), canvas.getWidth());
+//    	}    	
+//    }
+//    canvas.picture3CheckerBoard( canvas , island, third, 200, 200);
+    canvas.explore();
+  }
   public static void testRedGreenBlueAverage()
   {
     Picture canvas = new Picture("beach.jpg");
@@ -437,7 +503,12 @@ public class PictureTester
     // to run
 //	  testCheckerRandom();
 //	  testEncode();
-	  testPicture2CheckerBoard();
+//	  testPicture2CheckerBoard();
+//	  testCheckerRandomize();
+//	  testEdgeDetection();
+//	  testEdgeDetection2();
+	  testChromakey();
+//	  testPicture3CheckerBoard();
 //	  testDecodeAnything();
 //	  testEvenRed();
 //	  testRedGreenBlueAverage();

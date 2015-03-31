@@ -35,7 +35,8 @@ public class FauxToeShopPanel extends JPanel
 		basePicture = new Picture("beach.jpg");
 		currentPicture = new Picture("beach.jpg");
 		baseLayout = new SpringLayout();
-		baseLayout.putConstraint(SpringLayout.EAST, pictureBox, 0, SpringLayout.EAST, this);
+		baseLayout.putConstraint(SpringLayout.NORTH, imagePane, 0, SpringLayout.SOUTH, filterBox);
+		baseLayout.putConstraint(SpringLayout.WEST, pictureBox, 0, SpringLayout.EAST, filterBox);
 		
 		
 		setupPicture();
@@ -112,21 +113,9 @@ public class FauxToeShopPanel extends JPanel
 	    	    "CheckerBoardInverse",
 	    	    "CheckerBoardWat",
 	    	    "CheckerBoardBigWat",
-	    	    "Multiple",
-	    		"EndProduct",
-	    	    "MirrorTemple",
-	    	    "MirrorArms",
-	    	    "MirrorGull",
-	    	    "Collage",
-	    	    "Copy",
-	    	    "EdgeDetection",
-	    	    "EdgeDetection2",
-	    	    "Chromakey",
-	    	    "EncodeAndDecode",
-	    	    "GetCountRedOverValue",
-	    	    "SetRedToHalfValueInTopHalf",
-	    	    "ClearBlueOverValue",
-	    	    "GetAverageForColumn",
+	    	    "Do Nothing",
+	    	    "Checker Randomized"
+	    	    
 	    };
 	    filterBox.setModel(new DefaultComboBoxModel<String>(filters2));
 	    
@@ -219,98 +208,61 @@ public class FauxToeShopPanel extends JPanel
 					basePicture.mirrorVertical();
 					setupPicture();
 				}
-				else if(filterBox.getSelectedIndex() == 0)
+				else if(filterBox.getSelectedIndex() == 15)
 				{
+					basePicture.mirrorVerticalRightToLeft();
 					setupPicture();
 				}
-				else if(filterBox.getSelectedIndex() == 0)
+				else if(filterBox.getSelectedIndex() == 16)
 				{
+					basePicture.mirrorHorizontal();
 					setupPicture();
 				}
-				else if(filterBox.getSelectedIndex() == 0)
+				else if(filterBox.getSelectedIndex() == 17)
 				{
+					basePicture.mirrorHorizontalBottomToTop();
 					setupPicture();
 				}
-				else if(filterBox.getSelectedIndex() == 0)
+				else if(filterBox.getSelectedIndex() == 18)
 				{
+					basePicture.mirrorDiagnol();
 					setupPicture();
 				}
-				else if(filterBox.getSelectedIndex() == 0)
+				else if(filterBox.getSelectedIndex() == 19)
 				{
+					basePicture.checkerBoard();
 					setupPicture();
 				}
-				else if(filterBox.getSelectedIndex() == 0)
+				else if(filterBox.getSelectedIndex() == 20)
 				{
+					basePicture.checkerBoardBig();
 					setupPicture();
 				}
-				else if(filterBox.getSelectedIndex() == 0)
+				else if(filterBox.getSelectedIndex() == 21)
 				{
+					basePicture.checkerBoardInverse();
 					setupPicture();
 				}
-				else if(filterBox.getSelectedIndex() == 0)
+				else if(filterBox.getSelectedIndex() == 22)
 				{
+					basePicture.checkerBoardWat();
 					setupPicture();
 				}
-				else if(filterBox.getSelectedIndex() == 0)
+				else if(filterBox.getSelectedIndex() == 23)
 				{
+					basePicture.checkerBoardBigWat();
 					setupPicture();
 				}
-				else if(filterBox.getSelectedIndex() == 0)
+				else if(filterBox.getSelectedIndex() == 24)
 				{
+					
+				}
+				else if(filterBox.getSelectedIndex() == 25)
+				{
+					basePicture.checkerRandomize();
 					setupPicture();
 				}
-				else if(filterBox.getSelectedIndex() == 0)
-				{
-					setupPicture();
-				}
-				else if(filterBox.getSelectedIndex() == 0)
-				{
-					setupPicture();
-				}
-				else if(filterBox.getSelectedIndex() == 0)
-				{
-					setupPicture();
-				}
-				else if(filterBox.getSelectedIndex() == 0)
-				{
-					setupPicture();
-				}
-				else if(filterBox.getSelectedIndex() == 0)
-				{
-					setupPicture();
-				}
-				else if(filterBox.getSelectedIndex() == 0)
-				{
-					setupPicture();
-				}
-				else if(filterBox.getSelectedIndex() == 0)
-				{
-					setupPicture();
-				}
-				else if(filterBox.getSelectedIndex() == 0)
-				{
-					setupPicture();
-				}
-				else if(filterBox.getSelectedIndex() == 0)
-				{
-					setupPicture();
-				}
-				else if(filterBox.getSelectedIndex() == 0)
-				{
-					setupPicture();
-				}
-				else if(filterBox.getSelectedIndex() == 0)
-				{
-					setupPicture();
-				}
-				else if(filterBox.getSelectedIndex() == 0)
-				{
-					setupPicture();
-				}
-				else if(filterBox.getSelectedIndex() == 0)
-				{
-					setupPicture();
-				}
+				
 				
 			}
 			
